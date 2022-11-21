@@ -19,21 +19,30 @@
 </head>
   <body>
     <div class="container">
+      <div class="weather-app-wrapper">
       <div class="weather-app">
+        <div class="overview">
       <h1>Ashland, OH</h1>
       <ul>
         <li>Monday 09:30</li>
         <li>Sunny</li>
       </ul>
+      </div>
       <div class="row">
         <div class="col-6">
-          <img
-            src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-            alt="Sunny"
-          />
-          12&#176C | &#176F
-        </div>
-        <div class="col-6">
+          <div class="d-flex weather-temperature">
+  <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png" alt="Clear" id="icon" />
+  <div class="current-temperature">
+    <strong id="temperature">
+      12</strong><span class="units">&#176 C | 
+        <a href="#" id="farenheit">
+          &#176F
+      </a>
+      </span>
+  </div>
+  </div>
+  </div>
+ <div class="col-6">
           <ul>
             <li>
               Precipitation: 0%
@@ -47,6 +56,8 @@
           </ul>
         </div>
       </div>
+      
+    </div>
       <small>
         <a href="https://github.com/alexisallison/vanilla-weather-app.git"
         target="_blank">
@@ -54,10 +65,8 @@
       </a> 
         by Alexis Allison
     </small>
-    </div>
-      
   </div>
-      
+      </div>
     <script src="src/app.js"></script>  
   </body>
 </html>
