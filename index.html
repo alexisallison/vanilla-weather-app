@@ -16,16 +16,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
       <title>Weather App</title>
+          <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
   <body>
     <div class="container">
       <div class="weather-app-wrapper">
       <div class="weather-app">
         <div class="overview">
-      <h1>Ashland, OH</h1>
+      <h1 id="city">Ashland, OH</h1>
       <ul>
-        <li>Monday 09:30</li>
-        <li>Sunny</li>
+        <li id="date">Monday 09:30</li>
+        <li id="description">Sunny</li>
       </ul>
       </div>
       <div class="row">
@@ -45,13 +46,13 @@
  <div class="col-6">
           <ul>
             <li>
-              Precipitation: 0%
+              Precipitation: <span id="precipitation">0</span>%
             </li>
             <li>
-              Humidity: 0%
+              Humidity: <span id="humidity">0</span>%
             </li>
             <li>
-              Wind: 0mph
+              Wind: <span id="wind">0</span>mph
             </li>
           </ul>
         </div>
