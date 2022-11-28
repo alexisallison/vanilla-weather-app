@@ -48,3 +48,24 @@ li {
 a {
   text-decoration: none;
 }
+
+.btn {
+  background-color: #575a89;
+  border-color: #575a89;
+}
+
+.btn:hover {
+  background-color: white;
+  color: #575a89;
+  border-color: #575a89;
+}
+
+.active {
+  color: #575a89;
+  cursor: default;
+}
+
+.active:hover {
+  text-decoration: none;
+  color: #575a89;
+}
