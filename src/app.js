@@ -7,6 +7,34 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+  let forecastHTML = `<div class="row justify-content-center">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="col-sm"> 
+          <div class="card" id="forecast">          
+            <div class="card-body">
+              <h5 class="card-title" id="weather-forecast-day">${day}</h5>
+              <p class="card-text">
+                <i class="fa-solid fa-cloud"></i>
+                <br>
+                <span id="weather-forecast-temp"> 50&#176 | 70&#176</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayTemperature(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
@@ -76,3 +104,4 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("New York");
+displayForecast();
