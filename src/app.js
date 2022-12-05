@@ -7,29 +7,47 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function formatDays(timestamp) {
+  let date = newDate(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
   let forecastHTML = `<div class="row justify-content-center">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
   <div class="col-sm"> 
           <div class="card" id="forecast">          
             <div class="card-body">
-              <h5 class="card-title" id="weather-forecast-day">${day}</h5>
+              <h5 class="card-title" id="weather-forecast-day">${formatDays(
+                forecastDay.dt
+              )}</h5>
               <p class="card-text">
-                <i class="fa-solid fa-cloud"></i>
+  <img alt="icon" id="icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+    forecastDay[0].icon
+  }.png"/>
                 <br>
-                <span id="weather-forecast-temp"> 50&#176 | 70&#176</span>
+                <span id="weather-forecast-temp"> ${Math.round(
+                  forecastDay.temperature.minimum
+                )}&#176 | ${Math.round(
+          forecastDay.temperature.maximum
+        )}&#176</span>
               </p>
             </div>
           </div>
         </div>
         `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -37,7 +55,6 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log("getForecast");
   let apiKey = `baaf4089fe1f47ota3453bb84221f74b`;
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
   console.log(apiUrl);
