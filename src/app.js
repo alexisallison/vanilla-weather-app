@@ -26,7 +26,7 @@ function changeSeasons() {
   }
 }
 
-changeSeasons(10);
+changeSeasons();
 
 function formatDays(timestamp) {
   let date = new Date(timestamp * 1000);
