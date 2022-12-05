@@ -1,7 +1,7 @@
 function formatDate(timestamp) {
   let date = new Date(timestamp);
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
+  let hours = date.getHours().toString().padStart(2, "0");
+  let minutes = date.getMinutes().toString().padStart(2, "0");
   let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
@@ -14,14 +14,11 @@ function changeSeasons() {
   let seasonsImage = document.querySelector("#season");
   if ((month = 11 || 0 || 1)) {
     seasonsImage.setAttribute("src", "images/undraw_snowman_re_guxt.svg");
-  }
-  if ((month = 2 || 3 || 4)) {
+  } else if ((month = 2 || 3 || 4)) {
     seasonsImage.setAttribute("src", "images/undraw_blooming_re_2kc4.svg");
-  }
-  if ((month = 5 || 6 || 7)) {
+  } else if ((month = 5 || 6 || 7)) {
     seasonsImage.setAttribute("src", "images/undraw_sunlight_re_0usx.svg");
-  }
-  if ((month = 8 || 9 || 10)) {
+  } else if ((month = 8 || 9 || 10)) {
     seasonsImage.setAttribute("src", "images/undraw_windy_day_x-63-l(1).svg");
   }
 }
