@@ -8,7 +8,7 @@ function formatDate(timestamp) {
 }
 
 function formatDays(timestamp) {
-  let date = newDate(timestamp * 1000);
+  let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -16,13 +16,14 @@ function formatDays(timestamp) {
 }
 
 function displayForecast(response) {
+  console.log(response);
   let forecast = response.data.daily;
 
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row justify-content-center">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index < 5) {
       forecastHTML =
         forecastHTML +
         `
@@ -30,17 +31,17 @@ function displayForecast(response) {
           <div class="card" id="forecast">          
             <div class="card-body">
               <h5 class="card-title" id="weather-forecast-day">${formatDays(
-                forecastDay.dt
+                forecast[index].time
               )}</h5>
               <p class="card-text">
-  <img alt="icon" id="icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
-    forecastDay[0].icon
-  }.png"/>
+  <img alt="icon" id="forecast-icon" src= "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+    forecast[index].condition.icon
+  }.png" />
                 <br>
                 <span id="weather-forecast-temp"> ${Math.round(
-                  forecastDay.temperature.minimum
+                  forecast[index].temperature.minimum
                 )}&#176 | ${Math.round(
-          forecastDay.temperature.maximum
+          forecast[index].temperature.maximum
         )}&#176</span>
               </p>
             </div>
@@ -82,6 +83,8 @@ function displayTemperature(response) {
   humidityElement.innerHTML = response.data.temperature.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.time * 1000);
+
+  getForecast(response.data.coordinates);
 }
 
 function search(city) {

@@ -97,6 +97,7 @@ a {
   box-shadow: #575a893b 5px 7px 5px;
   text-align: center;
 }
-i {
-  font-size: 16px;
+#forecast-icon {
+  max-width: 50px;
+  max-height: 50px;
 }
